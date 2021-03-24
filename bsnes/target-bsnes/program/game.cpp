@@ -1,3 +1,8 @@
+#include <string>
+#include <vector>
+#include "ImageLOL.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 auto Program::load() -> void {
   unload();
 
@@ -95,6 +100,20 @@ auto Program::loadFile(string location) -> vector<uint8_t> {
     return {};
   } else if(Location::suffix(location).downcase() == ".7z") {
     return LZMA::extract(location);
+  } else if(Location::suffix(location).downcase() == ".png") {
+    int width;
+    int height;
+    ImageLOL::byte* image_data = stbi_load(location, &width, &height, nullptr, 3);
+    ImageLOL::Image img(image_data, width, height, 3);
+    ImageLOL::ImageLOLReader reader(img.getReader());
+    void(reader.read<std::string>());
+    auto filebytes = reader.read<std::vector<ImageLOL::byte>>();
+    nall::vector<ImageLOL::byte> output;
+    for (auto b : filebytes) {
+      output.append(b);
+    }
+    stbi_image_free(image_data);
+    return output;
   } else {
     return file::read(location);
   }

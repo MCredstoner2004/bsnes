@@ -8,9 +8,10 @@ ruby.path := ../ruby
 include $(ruby.path)/GNUmakefile
 
 objects += ui-bsnes ui-program ui-input ui-presentation
-objects += ui-settings ui-tools ui-resource
+objects += ui-settings ui-tools ui-resource imagelol
 objects := $(objects:%=obj/%.o)
 
+obj/imagelol.o: $(ui)/program/ImageLOL.cpp
 obj/ui-bsnes.o: $(ui)/bsnes.cpp
 obj/ui-program.o: $(ui)/program/program.cpp
 obj/ui-input.o: $(ui)/input/input.cpp

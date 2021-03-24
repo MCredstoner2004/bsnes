@@ -107,7 +107,7 @@ auto Program::load(uint id, string name, string type, vector<string> options) ->
     } else {
       dialog.setTitle("Load SNES ROM");
       dialog.setPath(path("Games", settings.path.recent.superFamicom));
-      dialog.setFilters({string{"SNES ROMs|*.sfc:*.smc:*.zip:*.7z:*.SFC:*.SMC:*.ZIP:*.7Z:*.Sfc:*.Smc:*.Zip"}, string{"All Files|*"}});
+      dialog.setFilters({string{"SNES ROMs|*.sfc:*.smc:*.zip:*.7z:*.png:*.PNG:*.SFC:*.SMC:*.ZIP:*.7Z:*.Sfc:*.Smc:*.Zip"}, string{"All Files|*"}});
       superFamicom.location = openGame(dialog);
       superFamicom.option = dialog.option();
     }
